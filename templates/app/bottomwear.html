@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Bottomwears{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <ul class="list-group">
+        <a href="{% url 'bottomwear' %}" class="list-group-item">All Bottomwears</a>
+        {% comment %} <a href="{% url 'Bottomwearslug' 'dell' %}" class="list-group-item">Dell</a>
+        <a href="{% url 'Bottomwearslug' 'hp' %}" class="list-group-item">Hp</a> {% endcomment %}
+        <a href="{% url 'bottomwearslug' 'below' %}" class="list-group-item">Below 500</a>
+        <a href="{% url 'bottomwearslug' 'above' %}" class="list-group-item">Above 500</a>
+      </ul>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   <div class="row">
+{% for b in bottomwears %}
+  <div class="col-sm-6 text-center mb-4">
+   <a href="/product-detail/{{b.id}}" class="btn">
+   <div class="item"><img src="{{b.product_image.url}}" class="img-fluid w-100" height="200px">
+    <span class="fw-bold">{{b.title}}</span><br>
+    <span class="fs-5">Rs. {{b.discounted_price}}</span>
+   </div>
+   </a>
+    </div>
+{% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

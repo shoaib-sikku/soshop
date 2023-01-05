@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Topwears{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <ul class="list-group">
+        <a href="{% url 'topwear' %}" class="list-group-item">All Topwears</a>
+        {% comment %} <a href="{% url 'topwearsslug' 'dell' %}" class="list-group-item">Dell</a>
+        <a href="{% url 'topwearsslug' 'hp' %}" class="list-group-item">Hp</a> {% endcomment %}
+        <a href="{% url 'topwearslug' 'below' %}" class="list-group-item">Below 500</a>
+        <a href="{% url 'topwearslug' 'above' %}" class="list-group-item">Above 500</a>
+      </ul>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   <div class="row">
+{% for t in topwears %}
+  <div class="col-sm-6 text-center mb-4">
+   <a href="/product-detail/{{t.id}}" class="btn">
+   <div class="item"><img src="{{t.product_image.url}}" class="img-fluid w-100" height="200px">
+    <span class="fw-bold">{{t.title}}</span><br>
+    <span class="fs-5">Rs. {{t.discounted_price}}</span>
+   </div>
+   </a>
+    </div>
+{% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
